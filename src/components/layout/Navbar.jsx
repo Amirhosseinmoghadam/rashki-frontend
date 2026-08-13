@@ -22,7 +22,6 @@ import {
   faCartShopping,
   faChevronDown,
   faMagnifyingGlass,
-  faMotorcycle,
   faUser,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";

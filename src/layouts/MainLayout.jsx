@@ -6,18 +6,7 @@ import SplashCursor from "../components/effects/SplashCursor.jsx";
 
 function MainLayout() {
     return (
-        <div
-            dir="rtl"
-            className="
-        relative
-        flex
-        min-h-screen
-        flex-col
-        overflow-x-hidden
-        bg-background
-        text-text-main
-      "
-        >
+        <div className="min-h-screen bg-background text-text-main transition-colors duration-300">
             {/* Cursor Effect */}
             <SplashCursor
                 DENSITY_DISSIPATION={8}
@@ -35,7 +24,7 @@ function MainLayout() {
             <div className="relative z-10 flex min-h-screen flex-col">
                 <Navbar />
 
-                <main className="flex-1">
+                <main className="min-h-[calc(100vh-76px)] pb-24 md:pb-0">
                     <Outlet />
                 </main>
 
