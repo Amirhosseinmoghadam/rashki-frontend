@@ -181,3 +181,807 @@ button,
 a {
     -webkit-tap-highlight-color: transparent;
 }
+
+/* =========================================
+   Navbar
+========================================= */
+
+.site-navbar {
+    --navbar-height: 76px;
+}
+
+/* =========================================================
+   HOME FULLSCREEN SCROLL HERO
+========================================================= */
+
+.home-scroll-hero {
+    --navbar-height: 76px;
+
+    position: relative;
+
+    width: 100%;
+
+    /*
+     * 9 slides
+     *
+     * Slide 01 تا Slide 09
+     */
+    height: calc(
+            (100dvh - var(--navbar-height)) * 9
+    );
+
+    margin: 0;
+    padding: 0;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   PINNED VIEWPORT
+========================================================= */
+
+.home-scroll-hero__pin {
+    position: relative;
+
+    width: 100%;
+
+    height: calc(
+            100dvh - var(--navbar-height)
+    );
+
+    min-height: 420px;
+
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+
+    isolation: isolate;
+
+    background: #050505;
+}
+
+
+/* =========================================================
+   SLIDES CONTAINER
+========================================================= */
+
+.home-scroll-hero__slides {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+.home-scroll-slide {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+
+    background: #050505;
+
+    will-change:
+            opacity,
+            transform;
+
+    transform-origin: center center;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.home-scroll-slide__image {
+    position: absolute;
+
+    inset: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: none;
+
+    object-fit: cover;
+
+    object-position: center center;
+
+    margin: 0;
+    padding: 0;
+
+    user-select: none;
+    pointer-events: none;
+
+    will-change:
+            transform,
+            opacity;
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.home-scroll-slide__overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background:
+            linear-gradient(
+                    90deg,
+                    rgba(0, 0, 0, 0.68) 0%,
+                    rgba(0, 0, 0, 0.35) 38%,
+                    rgba(0, 0, 0, 0.08) 70%,
+                    rgba(0, 0, 0, 0.35) 100%
+            );
+}
+
+
+/* =========================================================
+   CONTENT POSITION
+========================================================= */
+
+.home-scroll-slide__content {
+    position: absolute;
+
+    z-index: 5;
+
+    top: 50%;
+    right: clamp(24px, 7vw, 120px);
+
+    width: min(
+            420px,
+            calc(100% - 48px)
+    );
+
+    transform: translateY(-50%);
+
+    direction: rtl;
+}
+
+
+/* =========================================================
+   PART CARD
+========================================================= */
+
+.home-part-card {
+    width: 100%;
+
+    padding: clamp(20px, 2vw, 30px);
+
+    border: 1px solid
+    rgba(245, 148, 58, 0.45);
+
+    border-radius: 28px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(8, 12, 17, 0.88),
+                    rgba(8, 12, 17, 0.68)
+            );
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+            0 30px 80px rgba(0, 0, 0, 0.45),
+            inset 0 1px 0
+            rgba(255, 255, 255, 0.08);
+
+    color: white;
+}
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.home-part-card__top {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 18px;
+
+    direction: ltr;
+}
+
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.home-part-card__heading {
+    display: flex;
+
+    flex: 1;
+
+    min-width: 0;
+
+    align-items: baseline;
+
+    gap: 12px;
+
+    direction: ltr;
+}
+
+
+.home-part-card__number {
+    flex-shrink: 0;
+
+    font-size: clamp(
+            42px,
+            5vw,
+            68px
+    );
+
+    line-height: 0.85;
+
+    font-weight: 900;
+
+    letter-spacing: -0.06em;
+
+    color: var(--color-primary);
+}
+
+
+.home-part-card__category {
+    overflow: hidden;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    color: var(--color-primary);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.home-part-card__image-wrapper {
+    position: relative;
+
+    flex-shrink: 0;
+
+    width: 92px;
+    height: 92px;
+
+    overflow: hidden;
+
+    border: 1px solid
+    rgba(245, 148, 58, 0.75);
+
+    border-radius: 18px;
+
+    background: #111;
+
+    box-shadow:
+            0 0 0 1px
+            rgba(245, 148, 58, 0.08),
+            0 10px 30px
+            rgba(0, 0, 0, 0.35);
+}
+
+
+.home-part-card__image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.home-part-card__title {
+    margin: 24px 0 10px;
+
+    font-size: clamp(
+            25px,
+            3vw,
+            40px
+    );
+
+    line-height: 1.2;
+
+    font-weight: 900;
+
+    color: white;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.home-part-card__description {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: clamp(
+            13px,
+            1.2vw,
+            16px
+    );
+
+    line-height: 2;
+
+    text-align: right;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.home-part-card__actions {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+.home-part-card__primary,
+.home-part-card__secondary {
+    min-height: 46px;
+
+    padding: 0 18px;
+
+    border-radius: 13px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+            transform 0.25s ease,
+            background-color 0.25s ease,
+            border-color 0.25s ease;
+}
+
+
+.home-part-card__primary {
+    border: 1px solid var(--color-primary);
+
+    background: var(--color-primary);
+
+    color: white;
+}
+
+
+.home-part-card__secondary {
+    border: 1px solid
+    rgba(255, 255, 255, 0.2);
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: white;
+}
+
+
+.home-part-card__primary:hover,
+.home-part-card__secondary:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.home-scroll-progress {
+    position: absolute;
+
+    z-index: 20;
+
+    top: 50%;
+    left: clamp(
+            18px,
+            3vw,
+            52px
+    );
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    transform: translateY(-50%);
+
+    direction: ltr;
+}
+
+
+/* vertical line */
+
+.home-scroll-progress__line {
+    position: absolute;
+
+    top: 10px;
+    bottom: 10px;
+
+    left: 50%;
+
+    width: 1px;
+
+    transform: translateX(-50%);
+
+    background:
+            linear-gradient(
+                    to bottom,
+                    rgba(245, 148, 58, 0.9),
+                    rgba(255, 255, 255, 0.2)
+            );
+
+    opacity: 0.45;
+}
+
+
+/* progress item */
+
+.home-scroll-progress__item {
+    position: relative;
+
+    display: flex;
+
+    width: 42px;
+    height: 43px;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+            opacity 0.3s ease,
+            transform 0.3s ease;
+}
+
+
+.home-scroll-progress__number {
+    position: absolute;
+
+    right: 100%;
+
+    margin-right: 12px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    white-space: nowrap;
+}
+
+
+.home-scroll-progress__dot {
+    position: relative;
+
+    z-index: 2;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 999px;
+
+    background: #8a8f96;
+
+    box-shadow:
+            0 0 0 4px
+            rgba(255, 255, 255, 0.03);
+
+    transition:
+            background-color 0.3s ease,
+            transform 0.3s ease;
+}
+
+
+/* =========================================================
+   SCROLL HINT
+========================================================= */
+
+.home-scroll-hint {
+    position: absolute;
+
+    z-index: 20;
+
+    bottom: 24px;
+    left: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 4px;
+
+    transform: translateX(-50%);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2em;
+}
+
+
+.home-scroll-hint__arrow {
+    font-size: 18px;
+
+    line-height: 1;
+
+    animation:
+            home-scroll-arrow 1.4s
+            ease-in-out infinite;
+}
+
+
+@keyframes home-scroll-arrow {
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.45;
+    }
+
+    50% {
+        transform: translateY(5px);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .home-scroll-hero {
+        --navbar-height: 76px;
+
+        height: calc(
+                (100dvh - var(--navbar-height)) * 9
+        );
+    }
+
+
+    .home-scroll-hero__pin {
+        height: calc(
+                100dvh - var(--navbar-height)
+        );
+
+        min-height: 500px;
+    }
+
+
+    /*
+     * مهم:
+     *
+     * روی موبایل قسمت چپ تصویر را نگه می‌داریم.
+     */
+
+    .home-scroll-slide__image {
+        object-position: left center;
+    }
+
+
+    /*
+     * overlay موبایل
+     */
+
+    .home-scroll-slide__overlay {
+        background:
+                linear-gradient(
+                        180deg,
+                        rgba(0, 0, 0, 0.12) 0%,
+                        rgba(0, 0, 0, 0.2) 40%,
+                        rgba(0, 0, 0, 0.82) 100%
+                );
+    }
+
+
+    /*
+     * Card
+     */
+
+    .home-scroll-slide__content {
+        top: auto;
+        right: 14px;
+        bottom: 26px;
+
+        width: calc(
+                100% - 28px
+        );
+
+        transform: none;
+    }
+
+
+    .home-part-card {
+        padding: 16px;
+
+        border-radius: 22px;
+
+        background:
+                linear-gradient(
+                        145deg,
+                        rgba(8, 12, 17, 0.88),
+                        rgba(8, 12, 17, 0.76)
+                );
+    }
+
+
+    .home-part-card__image-wrapper {
+        width: 68px;
+        height: 68px;
+
+        border-radius: 14px;
+    }
+
+
+    .home-part-card__number {
+        font-size: 42px;
+    }
+
+
+    .home-part-card__category {
+        font-size: 8px;
+
+        letter-spacing: 0.12em;
+    }
+
+
+    .home-part-card__title {
+        margin-top: 16px;
+
+        font-size: 24px;
+    }
+
+
+    .home-part-card__description {
+        font-size: 12px;
+
+        line-height: 1.9;
+    }
+
+
+    /*
+     * Progress سمت چپ
+     */
+
+    .home-scroll-progress {
+        top: 50%;
+
+        left: 12px;
+
+        transform:
+                translateY(-50%)
+                scale(0.82);
+
+        transform-origin: left center;
+    }
+
+
+    .home-scroll-progress__number {
+        display: none;
+    }
+
+
+    .home-scroll-hint {
+        display: none;
+    }
+
+
+    .home-part-card__actions {
+        flex-direction: column;
+    }
+
+
+    .home-part-card__primary,
+    .home-part-card__secondary {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .home-scroll-slide__content {
+        right: 10px;
+        bottom: 18px;
+
+        width: calc(
+                100% - 20px
+        );
+    }
+
+
+    .home-part-card {
+        padding: 14px;
+    }
+
+
+    .home-part-card__image-wrapper {
+        width: 58px;
+        height: 58px;
+    }
+
+
+    .home-part-card__number {
+        font-size: 36px;
+    }
+
+
+    .home-part-card__title {
+        font-size: 21px;
+    }
+
+
+    .home-part-card__description {
+        font-size: 11px;
+    }
+}
