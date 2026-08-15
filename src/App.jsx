@@ -4,7 +4,7 @@ import GlobalMouseGlow from "./components/effects/GlobalMouseGlow.jsx";
 function App() {
     return (
         <>
-            <GlobalMouseGlow />
+            {/*<GlobalMouseGlow />*/}
 
             <AppRoutes />
         </>
