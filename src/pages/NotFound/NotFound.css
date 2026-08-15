@@ -1,133 +1,408 @@
+/* =========================================================
+   NOT FOUND PAGE
+========================================================= */
+
+.not-found-road {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 18%;
+
+    height: 1px;
+
+    background: linear-gradient(
+            to right,
+            transparent,
+            rgba(245, 148, 58, 0.15),
+            rgba(245, 148, 58, 0.35),
+            rgba(245, 148, 58, 0.15),
+            transparent
+    );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   MOTORCYCLE CONTAINER
+========================================================= */
+
 .motorcycle-animation {
     position: relative;
-    width: 180px;
-    height: 130px;
+
+    width: 280px;
+    height: 180px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: visible;
+
+    pointer-events: none;
 }
+
+
+/* =========================================================
+   MOTORCYCLE
+========================================================= */
 
 .motorcycle-wrapper {
     position: relative;
-    z-index: 2;
+
+    z-index: 10;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    animation: motorcycle-wheelie 3.5s ease-in-out infinite;
+    width: max-content;
+    height: max-content;
+
+    transform-origin: 50% 70%;
+
+    /*
+       بسیار مهم:
+       animation مستقیماً روی wrapper قرار دارد.
+    */
+
+    animation-name: motorcycle-wheelie;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    /*
+       جلوگیری از بهینه‌سازی بیش از حد مرورگر
+    */
+
+    will-change: transform;
 }
+
+
+/* =========================================================
+   FONT AWESOME MOTORCYCLE
+========================================================= */
 
 .motorcycle-icon {
-    font-size: 5rem;
+    display: block;
+
+    font-size: 6rem;
+
     color: #f5943a;
 
+    /*
+       باعث می‌شود حرکت موتور واضح‌تر دیده شود
+    */
+
     filter:
-            drop-shadow(0 15px 15px rgba(245, 148, 58, 0.25));
+            drop-shadow(
+                    0 12px 12px
+                    rgba(245, 148, 58, 0.25)
+            );
+
+    will-change: transform;
 }
+
+
+/* =========================================================
+   SHADOW
+========================================================= */
 
 .motorcycle-shadow {
     position: absolute;
-    bottom: 15px;
 
-    width: 115px;
+    left: 50%;
+    bottom: 20px;
+
+    width: 140px;
     height: 18px;
 
     border-radius: 999px;
 
-    background: rgba(15, 23, 32, 0.18);
+    background: rgba(15, 23, 32, 0.22);
+
     filter: blur(7px);
 
-    animation: motorcycle-shadow 3.5s ease-in-out infinite;
+    transform:
+            translateX(-50%)
+            scaleX(1);
+
+    animation-name: motorcycle-shadow;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    will-change: transform, opacity;
+
+    z-index: 1;
 }
 
-/*
-  انیمیشن موتور:
 
-  شروع روی زمین
-  ↓
-  بالا رفتن
-  ↓
-  تک‌چرخ
-  ↓
-  پایین آمدن
-  ↓
-  بازگشت به حالت اولیه
-*/
+/* =========================================================
+   MOTORCYCLE WHEELIE
+========================================================= */
 
 @keyframes motorcycle-wheelie {
+
+    /*
+       شروع
+    */
+
     0% {
         transform:
-                translateY(20px)
-                rotate(0deg);
+                translate3d(0, 25px, 0)
+                rotate(0deg)
+                scale(1);
     }
 
-    20% {
+
+    /*
+       حرکت اولیه
+    */
+
+    12% {
         transform:
-                translateY(10px)
-                rotate(0deg);
+                translate3d(25px, 5px, 0)
+                rotate(-5deg)
+                scale(1.02);
     }
 
-    40% {
+
+    /*
+       شروع تک چرخ
+    */
+
+    25% {
         transform:
-                translateY(-5px)
-                rotate(-22deg);
+                translate3d(35px, -15px, 0)
+                rotate(-18deg)
+                scale(1.05);
     }
 
-    55% {
+
+    /*
+       بالا رفتن شدید
+    */
+
+    38% {
         transform:
-                translateY(-15px)
-                rotate(-28deg);
+                translate3d(20px, -45px, 0)
+                rotate(-32deg)
+                scale(1.08);
     }
 
-    70% {
+
+    /*
+       اوج
+    */
+
+    50% {
         transform:
-                translateY(-5px)
-                rotate(-12deg);
+                translate3d(0, -65px, 0)
+                rotate(-48deg)
+                scale(1.12);
     }
 
-    85% {
+
+    /*
+       نگه داشتن wheelie
+    */
+
+    60% {
         transform:
-                translateY(12px)
-                rotate(0deg);
+                translate3d(-15px, -52px, 0)
+                rotate(-42deg)
+                scale(1.1);
     }
+
+
+    /*
+       پایین آمدن
+    */
+
+    72% {
+        transform:
+                translate3d(-30px, -20px, 0)
+                rotate(-20deg)
+                scale(1.05);
+    }
+
+
+    /*
+       نزدیک زمین
+    */
+
+    86% {
+        transform:
+                translate3d(-15px, 5px, 0)
+                rotate(-5deg)
+                scale(1.02);
+    }
+
+
+    /*
+       بازگشت
+    */
 
     100% {
         transform:
-                translateY(20px)
-                rotate(0deg);
+                translate3d(0, 25px, 0)
+                rotate(0deg)
+                scale(1);
     }
 }
 
-/* سایه همزمان با بالا رفتن موتور کوچک می‌شود */
+
+/* =========================================================
+   SHADOW ANIMATION
+========================================================= */
 
 @keyframes motorcycle-shadow {
+
     0% {
-        transform: scaleX(1);
+        transform:
+                translateX(-50%)
+                scaleX(1);
+
         opacity: 0.35;
     }
 
-    40% {
-        transform: scaleX(0.7);
-        opacity: 0.18;
+
+    25% {
+        transform:
+                translateX(-50%)
+                scaleX(0.8);
+
+        opacity: 0.25;
     }
 
-    55% {
-        transform: scaleX(0.55);
-        opacity: 0.1;
+
+    50% {
+        transform:
+                translateX(-50%)
+                scaleX(0.45);
+
+        opacity: 0.08;
     }
+
+
+    65% {
+        transform:
+                translateX(-50%)
+                scaleX(0.65);
+
+        opacity: 0.15;
+    }
+
+
+    80% {
+        transform:
+                translateX(-50%)
+                scaleX(0.85);
+
+        opacity: 0.25;
+    }
+
 
     100% {
-        transform: scaleX(1);
+        transform:
+                translateX(-50%)
+                scaleX(1);
+
         opacity: 0.35;
     }
 }
 
-/* احترام به تنظیمات کاربر برای کاهش حرکت */
 
-@media (prefers-reduced-motion: reduce) {
-    .motorcycle-wrapper,
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1024px) {
+
+    .motorcycle-animation {
+        width: 340px;
+        height: 230px;
+    }
+
+
+    .motorcycle-icon {
+        font-size: 7rem;
+    }
+
+
     .motorcycle-shadow {
-        animation: none;
+        width: 170px;
+        height: 20px;
+
+        bottom: 28px;
+    }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1440px) {
+
+    .motorcycle-animation {
+        width: 400px;
+        height: 250px;
+    }
+
+
+    .motorcycle-icon {
+        font-size: 8rem;
+    }
+
+
+    .motorcycle-shadow {
+        width: 190px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+
+    .motorcycle-animation {
+        width: 190px;
+        height: 140px;
+    }
+
+
+    .motorcycle-icon {
+        font-size: 5rem;
+    }
+
+
+    .motorcycle-shadow {
+        width: 115px;
+        height: 15px;
+
+        bottom: 15px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .motorcycle-animation {
+        width: 170px;
+        height: 125px;
+    }
+
+
+    .motorcycle-icon {
+        font-size: 4.5rem;
     }
 }
