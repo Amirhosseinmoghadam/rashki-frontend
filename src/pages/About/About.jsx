@@ -147,7 +147,7 @@ function About() {
                                     w-2
                                     rounded-full
                                     bg-[var(--color-primary)]
-                                    shadow-[0_0_12px_rgba(var(--primary-rgb),0.7)]
+                                    shadow-[0_0_12px_rgba(var(--brand-primary-rgb),0.7)]
                                 "
                             />
 
@@ -222,7 +222,7 @@ function About() {
                             "
                         >
                             <SpecularButton
-                                size="lg"
+                                size="xl"
                                 radius={16}
                                 baseColor="var(--color-primary)"
                                 lineColor="var(--color-primary)"
@@ -237,8 +237,7 @@ function About() {
                                 followMouse
                                 proximity={250}
                                 onClick={() => {
-                                    window.location.href =
-                                        "/products";
+                                    window.location.href = "/products";
                                 }}
                             >
                                 مشاهده محصولات
@@ -274,7 +273,7 @@ function About() {
 
                     <div className="relative">
                         <ElectricBorder
-                            color="#f5943a"
+                            color="var(--color-primary)"
                             speed={0.7}
                             chaos={0.008}
                             thickness={1}
@@ -421,7 +420,7 @@ function About() {
 
                 <div className="mt-28">
                     <ElectricBorder
-                        color="#f5943a"
+                        color="var(--color-primary)"
                         speed={0.45}
                         chaos={0.006}
                         borderRadius={24}
@@ -716,7 +715,7 @@ function About() {
 
                 <div className="mt-28">
                     <ElectricBorder
-                        color="#f5943a"
+                        color="var(--color-primary)"
                         speed={0.6}
                         chaos={0.008}
                         borderRadius={28}

@@ -125,7 +125,7 @@ function Contact() {
                                 w-2
                                 rounded-full
                                 bg-[var(--color-primary)]
-                                shadow-[0_0_12px_rgba(var(--primary-rgb),0.7)]
+                                shadow-[0_0_12px_rgba(var(--brand-primary-rgb),0.7)]
                             "
                         />
 
@@ -187,7 +187,7 @@ function Contact() {
 
                     <div className="space-y-6">
                         <ElectricBorder
-                            color="#f5943a"
+                            color="var(--color-primary)"
                             speed={0.5}
                             chaos={0.006}
                             borderRadius={24}
@@ -524,7 +524,7 @@ function Contact() {
                     ================================================= */}
 
                     <ElectricBorder
-                        color="#f5943a"
+                        color="var(--color-primary)"
                         speed={0.4}
                         chaos={0.005}
                         borderRadius={24}
@@ -809,7 +809,7 @@ function Contact() {
 
                                 <div className="pt-2">
                                     <SpecularButton
-                                        size="lg"
+                                        size="xl"
                                         radius={14}
                                         baseColor="var(--color-primary)"
                                         lineColor="var(--color-primary)"
