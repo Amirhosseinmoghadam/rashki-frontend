@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Counter from "../../components/ui/Counter/Counter";
 import SpecularButton from "../../components/ui/Button/SpecularButton";
 import ElectricBorder from "../../components/ui/Border/ElectricBorder";
+import logo from "../../assets/images/logo.svg";
 
 const OTP_DURATION = 120;
 
@@ -319,26 +320,6 @@ const Login = () => {
                         {/* Header */}
 
                         <div className="mb-8 text-center">
-                            <div
-                                className="
-                  mx-auto
-                  mb-6
-                  flex
-                  h-16
-                  w-16
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[var(--color-primary)]
-                  text-2xl
-                  font-black
-                  text-white
-                  shadow-lg
-                  shadow-[rgba(var(--primary-rgb),0.2)]
-                "
-                            >
-                                ر
-                            </div>
 
                             <h1 className="text-3xl font-bold">
                                 ورود به حساب
