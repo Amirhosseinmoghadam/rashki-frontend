@@ -1,0 +1,76 @@
+import axios from "axios";
+
+
+const api = axios.create({
+    baseURL: "http://127.0.0.1:8000/api/v1/",
+    headers: {
+        "Content-Type": "application/json",
+    },
+});
+
+
+/*
+============================================================
+    Request Interceptor
+============================================================
+*/
+
+api.interceptors.request.use(
+    (config) => {
+
+        const accessToken =
+            localStorage.getItem("access_token");
+
+
+        if (accessToken) {
+            config.headers.Authorization =
+                `Bearer ${accessToken}`;
+        }
+
+
+        return config;
+    },
+
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+
+/*
+============================================================
+    Response Interceptor
+============================================================
+*/
+
+api.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+
+    async (error) => {
+
+        if (
+            error.response?.status === 401
+        ) {
+
+            localStorage.removeItem(
+                "access_token"
+            );
+
+            localStorage.removeItem(
+                "refresh_token"
+            );
+
+            localStorage.removeItem(
+                "auth_user"
+            );
+        }
+
+
+        return Promise.reject(error);
+    }
+);
+
+
+export default api;

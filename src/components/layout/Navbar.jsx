@@ -17,13 +17,15 @@ import {
     faTags,
     faCircleInfo,
     faPhone,
+    faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { useTheme } from "../../hooks/useTheme";
-
 import ThemeToggle from "../common/ThemeToggle";
 
 import logo from "../../assets/images/logo.svg";
+
+import { useAuth } from "../../context/AuthContext";
 
 
 function Navbar() {
@@ -33,6 +35,16 @@ function Navbar() {
 
     const { isDark, toggleTheme } = useTheme();
 
+    const {
+        user,
+        isAuthenticated,
+        logout,
+    } = useAuth();
+
+
+    /* =========================================================
+        NAVIGATION ITEMS
+    ========================================================== */
 
     const navItems = [
         {
@@ -68,6 +80,10 @@ function Navbar() {
     ];
 
 
+    /* =========================================================
+        ACTIVE ROUTE
+    ========================================================== */
+
     const isActive = (path) => {
         if (path === "/") {
             return location.pathname === "/";
@@ -77,6 +93,10 @@ function Navbar() {
     };
 
 
+    /* =========================================================
+        MOBILE MENU
+    ========================================================== */
+
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };
@@ -85,6 +105,26 @@ function Navbar() {
     const toggleMobileMenu = () => {
         setMobileMenuOpen((prev) => !prev);
     };
+
+
+    /* =========================================================
+        LOGOUT
+    ========================================================== */
+
+    const handleLogout = () => {
+        closeMobileMenu();
+        logout();
+    };
+
+
+    /* =========================================================
+        USER NAME
+    ========================================================== */
+
+    const userName =
+        user?.first_name ||
+        user?.phone_number ||
+        "حساب کاربری";
 
 
     return (
@@ -125,7 +165,6 @@ function Navbar() {
 
                     {/* =================================================
                         MOBILE MENU BUTTON
-                        در RTL سمت چپ قرار می‌گیرد
                     ================================================== */}
 
                     <button
@@ -138,24 +177,24 @@ function Navbar() {
                         aria-expanded={mobileMenuOpen}
                         onClick={toggleMobileMenu}
                         className="
-        order-1
-        flex
-        h-11
-        w-11
-        shrink-0
-        items-center
-        justify-center
-        rounded-xl
-        border
-        border-[var(--color-border)]
-        bg-[var(--color-surface)]
-        text-[var(--color-text-main)]
-        transition-all
-        duration-300
-        hover:border-[var(--color-primary)]
-        hover:text-[var(--color-primary)]
-        lg:hidden
-    "
+                            order-1
+                            flex
+                            h-11
+                            w-11
+                            shrink-0
+                            items-center
+                            justify-center
+                            rounded-xl
+                            border
+                            border-[var(--color-border)]
+                            bg-[var(--color-surface)]
+                            text-[var(--color-text-main)]
+                            transition-all
+                            duration-300
+                            hover:border-[var(--color-primary)]
+                            hover:text-[var(--color-primary)]
+                            lg:hidden
+                        "
                     >
                         <FontAwesomeIcon
                             icon={
@@ -170,7 +209,6 @@ function Navbar() {
 
                     {/* =================================================
                         LOGO
-                        در RTL سمت راست قرار می‌گیرد
                     ================================================== */}
 
                     <Link
@@ -302,7 +340,9 @@ function Navbar() {
                         "
                     >
 
-                        {/* Search */}
+                        {/* =================================================
+                            SEARCH
+                        ================================================== */}
 
                         <button
                             type="button"
@@ -330,7 +370,9 @@ function Navbar() {
                         </button>
 
 
-                        {/* Cart */}
+                        {/* =================================================
+                            CART
+                        ================================================== */}
 
                         <Link
                             to="/cart"
@@ -381,43 +423,125 @@ function Navbar() {
                         </Link>
 
 
-                        {/* Theme */}
+                        {/* =================================================
+                            THEME
+                        ================================================== */}
 
                         <ThemeToggle />
 
 
-                        {/* Login */}
+                        {/* =================================================
+                            AUTH - DESKTOP
+                        ================================================== */}
 
-                        <Link
-                            to="/login"
-                            className="
-                                flex
-                                items-center
-                                gap-2
-                                rounded-xl
-                                bg-[var(--color-primary)]
-                                px-4
-                                py-3
-                                text-sm
-                                font-bold
-                                text-white
-                                shadow-lg
-                                shadow-[rgba(var(--primary-rgb),0.20)]
-                                transition-all
-                                duration-300
-                                hover:-translate-y-0.5
-                                hover:shadow-xl
-                            "
-                        >
-                            <FontAwesomeIcon
-                                icon={faUser}
-                            />
+                        {isAuthenticated ? (
+                            <div
+                                className="
+                                    flex
+                                    items-center
+                                    gap-2
+                                "
+                            >
 
-                            <span>
-                                ورود | ثبت‌نام
-                            </span>
+                                {/* User Profile */}
 
-                        </Link>
+                                <Link
+                                    to="/profile"
+                                    className="
+                                        flex
+                                        items-center
+                                        gap-2
+                                        rounded-xl
+                                        border
+                                        border-[var(--color-border)]
+                                        bg-[var(--color-surface)]
+                                        px-4
+                                        py-2.5
+                                        text-sm
+                                        font-bold
+                                        text-[var(--color-text-main)]
+                                        transition-all
+                                        duration-300
+                                        hover:border-[var(--color-primary)]
+                                        hover:text-[var(--color-primary)]
+                                    "
+                                >
+
+                                    <FontAwesomeIcon
+                                        icon={faUser}
+                                    />
+
+                                    <span>
+                                        {userName}
+                                    </span>
+
+                                </Link>
+
+
+                                {/* Logout */}
+
+                                <button
+                                    type="button"
+                                    onClick={handleLogout}
+                                    title="خروج از حساب"
+                                    aria-label="خروج از حساب"
+                                    className="
+                                        flex
+                                        h-11
+                                        w-11
+                                        items-center
+                                        justify-center
+                                        rounded-xl
+                                        border
+                                        border-[var(--color-border)]
+                                        bg-[var(--color-surface)]
+                                        text-[var(--color-text-muted)]
+                                        transition-all
+                                        duration-300
+                                        hover:border-red-500
+                                        hover:bg-red-500/10
+                                        hover:text-red-500
+                                    "
+                                >
+                                    <FontAwesomeIcon
+                                        icon={faRightFromBracket}
+                                    />
+                                </button>
+
+                            </div>
+                        ) : (
+                            <Link
+                                to="/login"
+                                className="
+                                    flex
+                                    items-center
+                                    gap-2
+                                    rounded-xl
+                                    bg-[var(--color-primary)]
+                                    px-4
+                                    py-3
+                                    text-sm
+                                    font-bold
+                                    text-white
+                                    shadow-lg
+                                    shadow-[rgba(var(--primary-rgb),0.20)]
+                                    transition-all
+                                    duration-300
+                                    hover:-translate-y-0.5
+                                    hover:shadow-xl
+                                "
+                            >
+
+                                <FontAwesomeIcon
+                                    icon={faUser}
+                                />
+
+                                <span>
+                                    ورود | ثبت‌نام
+                                </span>
+
+                            </Link>
+                        )}
 
                     </div>
 
@@ -446,7 +570,6 @@ function Navbar() {
 
             {/* =========================================================
                 MOBILE MENU
-                از سمت راست باز می‌شود
             ========================================================== */}
 
             <aside
@@ -586,6 +709,92 @@ function Navbar() {
 
 
                 {/* =================================================
+                    MOBILE USER ACCOUNT
+                ================================================== */}
+
+                {isAuthenticated && (
+                    <div className="px-4 pt-4">
+
+                        <Link
+                            to="/profile"
+                            onClick={closeMobileMenu}
+                            className="
+                                flex
+                                items-center
+                                gap-3
+                                rounded-2xl
+                                border
+                                border-[var(--color-border)]
+                                bg-[var(--color-surface)]
+                                p-4
+                                transition-all
+                                duration-300
+                                hover:border-[var(--color-primary)]
+                            "
+                        >
+
+                            {/* Avatar */}
+
+                            <span
+                                className="
+                                    flex
+                                    h-11
+                                    w-11
+                                    shrink-0
+                                    items-center
+                                    justify-center
+                                    rounded-xl
+                                    bg-[var(--color-primary)]/10
+                                    text-[var(--color-primary)]
+                                "
+                            >
+                                <FontAwesomeIcon
+                                    icon={faUser}
+                                />
+                            </span>
+
+
+                            {/* User info */}
+
+                            <span
+                                className="
+                                    min-w-0
+                                    flex-1
+                                "
+                            >
+
+                                <span
+                                    className="
+                                        block
+                                        truncate
+                                        text-sm
+                                        font-black
+                                        text-[var(--color-text-main)]
+                                    "
+                                >
+                                    {userName}
+                                </span>
+
+                                <span
+                                    className="
+                                        mt-1
+                                        block
+                                        text-xs
+                                        text-[var(--color-text-muted)]
+                                    "
+                                >
+                                    حساب کاربری
+                                </span>
+
+                            </span>
+
+                        </Link>
+
+                    </div>
+                )}
+
+
+                {/* =================================================
                     MOBILE NAVIGATION
                 ================================================== */}
 
@@ -706,8 +915,6 @@ function Navbar() {
                         "
                     >
 
-                        {/* Right Content */}
-
                         <span
                             className="
                                 flex
@@ -747,9 +954,7 @@ function Navbar() {
                         </span>
 
 
-                        {/* =================================================
-                            THEME SWITCH
-                        ================================================== */}
+                        {/* Theme Switch */}
 
                         <span
                             className="
@@ -859,7 +1064,7 @@ function Navbar() {
 
 
                 {/* =================================================
-                    MOBILE FOOTER / LOGIN
+                    MOBILE FOOTER / AUTH
                 ================================================== */}
 
                 <div
@@ -871,39 +1076,81 @@ function Navbar() {
                     "
                 >
 
-                    <Link
-                        to="/login"
-                        onClick={closeMobileMenu}
-                        className="
-                            flex
-                            min-h-[54px]
-                            w-full
-                            items-center
-                            justify-center
-                            gap-3
-                            rounded-2xl
-                            bg-[var(--color-primary)]
-                            px-4
-                            text-sm
-                            font-bold
-                            text-white
-                            shadow-lg
-                            shadow-[rgba(var(--primary-rgb),0.20)]
-                            transition-all
-                            duration-300
-                            hover:-translate-y-0.5
-                        "
-                    >
+                    {isAuthenticated ? (
 
-                        <FontAwesomeIcon
-                            icon={faUser}
-                        />
+                        <button
+                            type="button"
+                            onClick={handleLogout}
+                            className="
+                                flex
+                                min-h-[54px]
+                                w-full
+                                items-center
+                                justify-center
+                                gap-3
+                                rounded-2xl
+                                border
+                                border-red-500/20
+                                bg-red-500/10
+                                px-4
+                                text-sm
+                                font-bold
+                                text-red-500
+                                transition-all
+                                duration-300
+                                hover:border-red-500
+                                hover:bg-red-500
+                                hover:text-white
+                            "
+                        >
 
-                        <span>
-                            ورود | ثبت‌نام
-                        </span>
+                            <FontAwesomeIcon
+                                icon={faRightFromBracket}
+                            />
 
-                    </Link>
+                            <span>
+                                خروج از حساب
+                            </span>
+
+                        </button>
+
+                    ) : (
+
+                        <Link
+                            to="/login"
+                            onClick={closeMobileMenu}
+                            className="
+                                flex
+                                min-h-[54px]
+                                w-full
+                                items-center
+                                justify-center
+                                gap-3
+                                rounded-2xl
+                                bg-[var(--color-primary)]
+                                px-4
+                                text-sm
+                                font-bold
+                                text-white
+                                shadow-lg
+                                shadow-[rgba(var(--primary-rgb),0.20)]
+                                transition-all
+                                duration-300
+                                hover:-translate-y-0.5
+                            "
+                        >
+
+                            <FontAwesomeIcon
+                                icon={faUser}
+                            />
+
+                            <span>
+                                ورود | ثبت‌نام
+                            </span>
+
+                        </Link>
+
+                    )}
 
                 </div>
 
