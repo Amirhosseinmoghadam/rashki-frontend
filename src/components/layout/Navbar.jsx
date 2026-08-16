@@ -138,24 +138,24 @@ function Navbar() {
                         aria-expanded={mobileMenuOpen}
                         onClick={toggleMobileMenu}
                         className="
-                            order-3
-                            flex
-                            h-11
-                            w-11
-                            shrink-0
-                            items-center
-                            justify-center
-                            rounded-xl
-                            border
-                            border-[var(--color-border)]
-                            bg-[var(--color-surface)]
-                            text-[var(--color-text-main)]
-                            transition-all
-                            duration-300
-                            hover:border-[var(--color-primary)]
-                            hover:text-[var(--color-primary)]
-                            lg:hidden
-                        "
+        order-1
+        flex
+        h-11
+        w-11
+        shrink-0
+        items-center
+        justify-center
+        rounded-xl
+        border
+        border-[var(--color-border)]
+        bg-[var(--color-surface)]
+        text-[var(--color-text-main)]
+        transition-all
+        duration-300
+        hover:border-[var(--color-primary)]
+        hover:text-[var(--color-primary)]
+        lg:hidden
+    "
                     >
                         <FontAwesomeIcon
                             icon={
